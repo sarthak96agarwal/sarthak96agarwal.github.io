@@ -2,9 +2,9 @@ title:             Sarthak Agarwal
 email:             your-email@example.com
 description:       Blog
 author:            Sarthak Agarwal
-baseurl:           "/startbootstrap-clean-blog-jekyll"
+baseurl:           ""
 url:               "http://sarthak96agarwal.github.io"
-
+theme: jekyll-theme-clean-blog
 # Social Profiles
 twitter_username:  SBootstrap
 github_username:   BlackrockDigital
