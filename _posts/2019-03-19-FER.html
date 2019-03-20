@@ -8,7 +8,11 @@ background: '/img/posts/02.jpg'
 
 <p>This being my first experience with convolution neural network, I decided to start with a basic problem. My aim was to get an essence of how convolutions work and how are deep neural networks trained in general. Classifying the CIFAR-10 dataset would be too mainstream. So I decided to pick up an interesting problem and started from scratch.</p>
 
-<p>Real time facial expression recognition appealed as an interesting problem to work on. I used the Karolinska Directed Emotional Faces (KDEF) dataset which had 4900 pictures of human facial expressions. The dataset contained a total of 7 basic expressions namely - Angry, Disgust, Fear, Happy, Neutral, Sad and Surprise. It has a rich collection of images,  evenly distributed amongst the classes, with each person posing in five orientations.</p>
+<p>Real time facial expression recognition appealed as an interesting problem to work on. I used the Karolinska Directed Emotional Faces (KDEF) dataset which had 4900 pictures of human facial expressions. The dataset contained a total of 7 basic expressions namely - Angry, Disgust, Fear, Happy, Neutral, Sad and Surprise. It has a rich collection of images,  evenly distributed amongst the classes, with each person posing in five orientations. The following figure shows some of the dataset images.</p>
+
+<center><table class="image">
+<tr><td><img src="/img/data.jpg" width="500" height="333"></td></tr>
+</table></center>
 
 <p>As a first pre-processing step, I converted the images to grayscale thinking that colour would not add any value for the prediction. Next, I detected face in the image using OpenCV HAAR Cascade and cropped the image. Finally, I rescaled my image to 350X350 size and normalized it. </p>
 
@@ -35,13 +39,15 @@ background: '/img/posts/02.jpg'
 </p>
 
 <p>To further improve my classification accuracy, I augmented my training dataset by adding gaussian noise to the images which doubled my dataset. This increased my test accuracy to  87.14%.</p>
-<p>This was my first experience with convolutions and also my first blog post ever. In future I plan to take up more challenging tasks and continue sharing my experience with you.
-</p>
+<p>Finally using my model and OpenCV I predicted the facial expressions in real time. The video below shows the final output.</p>
 
-<video width="400" controls>
+
+<center><video width="500" controls>
   <source src="/img/vid.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
-</video>
+</video></center>
 
-
-<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>
+<p>This was my first experience with convolutions and also my first blog post. In future I plan to take up more challenging tasks and continue sharing my experience with you.
+</p>
+Thanks, <br>
+Sarthak
