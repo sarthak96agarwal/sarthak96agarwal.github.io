@@ -1,0 +1,47 @@
+---
+layout: post
+title:  "Real Time Facial Expression Recognition"
+subtitle: "My learnings from the project"
+date:   2019-03-19 18:45:13 -0400
+background: '/img/posts/02.jpg'
+---
+
+<p>This being my first experience with convolution neural network, I decided to start with a basic problem. My aim was to get an essence of how convolutions work and how are deep neural networks trained in general. Classifying the CIFAR-10 dataset would be too mainstream. So I decided to pick up an interesting problem and started from scratch.</p>
+
+<p>Real time facial expression recognition appealed as an interesting problem to work on. I used the Karolinska Directed Emotional Faces (KDEF) dataset which had 4900 pictures of human facial expressions. The dataset contained a total of 7 basic expressions namely - Angry, Disgust, Fear, Happy, Neutral, Sad and Surprise. It has a rich collection of images,  evenly distributed amongst the classes, with each person posing in five orientations.</p>
+
+<p>As a first pre-processing step, I converted the images to grayscale thinking that colour would not add any value for the prediction. Next, I detected face in the image using OpenCV HAAR Cascade and cropped the image. Finally, I rescaled my image to 350X350 size and normalized it. </p>
+
+<blockquote class="blockquote">Transfer learning is the improvement of learning in a new task through the transfer of knowledge from a related task that has already been learned.</blockquote>
+<cite>– Chapter 11: Transfer Learning, Handbook of Research on Machine Learning Applications, 2009</cite>
+
+
+
+<p>Transfer learning has proven to be successful for many tasks in the computer vision domain. So I decided to use it to extract features from the images. I used a VGG16 model pre-trained on the  imagenet dataset to extract features and added few fully connected layers on top to predict the emotion.</p>
+
+<p>By my personal experience, I strongly suggest to consider the sanity check tip/tricks mentioned in the CS231n Stanford course. For most of you this will be pretty trivial, but they helped me a lot to find a bug in my code.</p>
+
+<p>After experimenting with different optimization algorithms and training with different learning rates, I achieved a loss of 0.98 on the validation set using cross entropy error. The model could not classify the emotions well. 
+</p>
+
+<p>The VGG16 model was trained on the Imagenet dataset which is very different from the KDEF dataset. I realized this fact and decided to make the VGG16 trainable. But training the model right from the first epoch won’t be helpful because it would require a large dataset to achieve convergence. A better approach is to train the fully connected layers for some epochs to bring up their weights to a better point. Then unfreeze all the layers and train the whole model.</p>
+
+<p>Initially, I used the same learning rate for the whole model. I saw that the training loss suddenly increased at the epoch where I began the VGG16 training. It was then I decided to use differential learning rates.
+</p>
+
+<p>It’s not a good idea to change the learned weights on the initial layers too much because they are already good at what they are supposed to do (detecting the features like edges etc). Middle layers will have knowledge of the complex features that might help our task to some extent if we slightly modify them. So, we want to finetune them a little.</p>
+
+<p>So, I used different learning rates for different parts of the model and significantly improved on validation performance. Finally I could achieve a test accuracy of 76.33% on the dataset.
+</p>
+
+<p>To further improve my classification accuracy, I augmented my training dataset by adding gaussian noise to the images which doubled my dataset. This increased my test accuracy to  87.14%.</p>
+<p>This was my first experience with convolutions and also my first blog post ever. In future I plan to take up more challenging tasks and continue sharing my experience with you.
+</p>
+
+<video width="400" controls>
+  <source src="/img/vid.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>

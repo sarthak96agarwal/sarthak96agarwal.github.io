@@ -1,14 +1,15 @@
 title:             Sarthak Agarwal
-email:             your-email@example.com
+email:             sa5154@nyu.edu
 description:       Blog
 author:            Sarthak Agarwal
 baseurl:           ""
 url:               "http://sarthak96agarwal.github.io"
 theme: jekyll-theme-clean-blog
 # Social Profiles
-twitter_username:  SBootstrap
-github_username:   BlackrockDigital
-facebook_username: StartBootstrap
+#twitter_username:  SBootstrap
+github_username:   sarthak96agarwal
+facebook_username: sarthak.agarwal.1422
+linkedin_username: sarthak96agarwal
 
 # Build settings
 markdown:          kramdown
