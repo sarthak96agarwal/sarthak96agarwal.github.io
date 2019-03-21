@@ -25,9 +25,6 @@ background: '/img/posts/02.jpg'
 
 <p>By my personal experience, I strongly suggest to consider the sanity check tip/tricks mentioned in the CS231n Stanford course. For most of you this will be pretty trivial, but they helped me a lot to find a bug in my code.</p>
 
-<p>After experimenting with different optimization algorithms and training with different learning rates, I achieved a loss of 0.98 on the validation set using cross entropy error. The model could not classify the emotions well. 
-</p>
-
 <p>The VGG16 model was trained on the Imagenet dataset which is very different from the KDEF dataset. I realized this fact and decided to make the VGG16 trainable. But training the model right from the first epoch won’t be helpful because it would require a large dataset to achieve convergence. A better approach is to train the fully connected layers for some epochs to bring up their weights to a better point. Then unfreeze all the layers and train the whole model.</p>
 
 <p>Initially, I used the same learning rate for the whole model. I saw that the training loss suddenly increased at the epoch where I began the VGG16 training. It was then I decided to use differential learning rates.
